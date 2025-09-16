@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Invoices</h2>
+<a href="{% url 'invoice_create' %}">New Invoice</a>
+<ul>
+    {% for invoice in invoices %}
+        <li>
+            <a href="{% url 'invoice_detail' invoice.pk %}">{{ invoice }}</a> - Total: {{ invoice.total }}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

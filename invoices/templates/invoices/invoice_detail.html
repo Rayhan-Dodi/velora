@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ invoice }}</h2>
+<p>Client: {{ invoice.client }}</p>
+<p>Date: {{ invoice.date }}</p>
+<p>Due: {{ invoice.due_date }}</p>
+
+<h3>Items</h3>
+<ul>
+    {% for item in invoice.items.all %}
+        <li>{{ item.description }} - {{ item.quantity }} × {{ item.unit_price }} = {{ item.total }}</li>
+    {% endfor %}
+</ul>
+<p><b>Total:</b> {{ invoice.total }}</p>
+
+<a href="{% url 'invoice_update' invoice.pk %}">Edit</a> |
+<a href="{% url 'invoice_delete' invoice.pk %}">Delete</a>
+{% endblock %}
